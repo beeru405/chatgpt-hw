@@ -61,12 +61,5 @@
         </plugins>
     </build>
 
-    <!-- Server configuration -->
-    <servers>
-        <server>
-            <id>tomcat</id>
-            <username>deployer</username>
-            <password>deployer</password>
-        </server>
-    </servers>
+   
 </project>
