@@ -1,19 +1,36 @@
 package com.Java
-import java.util.Scanner;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 public class HelloWorldTest {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    @Test
+    public void testHelloInput() {
+        String input = "hello";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
 
-        System.out.print("Enter a word: ");
-        String input = scanner.next();
+        HelloWorld.main(new String[]{});
 
-        if (input.equals("hello")) {
-            System.out.println("Hello, World!");
-        } else {
-            System.out.println("Sorry, I only respond to 'hello'.");
-        }
+        String output = "Hello, World!\n";
+        assertEquals(output, systemOut());
+    }
 
-        scanner.close();
+    @Test
+    public void testNonHelloInput() {
+        String input = "world";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        HelloWorld.main(new String[]{});
+
+        String output = "Sorry, I only respond to 'hello'.\n";
+        assertEquals(output, systemOut());
+    }
+
+    private String systemOut() {
+        return outContent.toString();
     }
 }
